@@ -1,4 +1,7 @@
 const LivroSchema = {
+    id: {
+        type: Number,
+    },
     titulo: {
         type: String,
     },
