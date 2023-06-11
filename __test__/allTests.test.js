@@ -52,4 +52,12 @@ describe("\n\nFuncionalidade 2: GET /livros", () => {
             expect(response.body.length).toBe(livrosDatabase.length);
         })
     })
+    
+    describe("\nTeste - Listar livros por filtros (Titulo, Autor ou assunto)", () => {
+        test("Deve retornar os livros do Autor George Orwell", async () => {
+            const response = await request(app).get("/livros?autor=George Orwell");
+            expect(response.statusCode).toBe(200);
+            expect(response.body.length).toBe(livrosDatabase.filter(e => e.autor === "George Orwell").length);
+        })
+    })
 })
