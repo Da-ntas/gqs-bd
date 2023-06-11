@@ -52,12 +52,33 @@ describe("\n\nFuncionalidade 2: GET /livros", () => {
             expect(response.body.length).toBe(livrosDatabase.length);
         })
     })
-    
+
     describe("\nTeste - Listar livros por filtros (Titulo, Autor ou assunto)", () => {
         test("Deve retornar os livros do Autor George Orwell", async () => {
             const response = await request(app).get("/livros?autor=George Orwell");
             expect(response.statusCode).toBe(200);
             expect(response.body.length).toBe(livrosDatabase.filter(e => e.autor === "George Orwell").length);
+        })
+    })
+
+
+    describe("\nTeste - Listar livros por filtros (Titulo, Autor ou assunto) por propriedade inexistente", () => {
+        test("Deve retornar os livros com a propriedade Teste = 100 paginas", async () => {
+            const response = await request(app).get("/livros?Teste=100 paginas");
+            expect(response.statusCode).toBe(400);
+            expect(response.body.error).toBe(`Parâmetro inválido.`);
+        })
+    })
+})
+
+
+describe("\n\nFuncionalidade 3: GET /livros/:id", () => {
+    describe("\nTeste - Listar livro por ID", () => {
+        test("Deve retornar livro conforme ID passado", async () => {
+            const response = await request(app).get("/livros/7");
+            expect(response.statusCode).toBe(200);
+            expect(response.body.length).toBe(1);
+            expect(response.body[0].id).toBe(7);
         })
     })
 })

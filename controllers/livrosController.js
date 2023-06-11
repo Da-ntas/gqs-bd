@@ -31,7 +31,7 @@ export const getAllLivros = (req, res) => {
 
     if(!validade(query)){
         return res.status(400).json({
-            error: `Parâmetro inválido.\n`,
+            error: `Parâmetro inválido.`,
             validos: {
                 titulo: {
                     type: "String",
