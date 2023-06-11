@@ -102,3 +102,26 @@ describe("\n\nFuncionalidade 3: GET /comments", () => {
         })
     })
 })
+
+describe("\n\nFuncionalidade 3: POST /comments/:id", () => {
+    describe("\nTeste - Criar um novo comentário", () => {
+        test("Deve cadastrar um novo comentário com sucesso", async () => {
+            const response = await request(app).post("/comments/16").send(  {
+                "usuario": "teste2",
+                "avaliacao": 4,
+                "comentario": "teste2"
+            });
+            expect(response.statusCode).toBe(200);
+        })
+    })
+
+    describe("\nTeste - Criar novo comentário com propriedades obrigatórias ausentes", () => {
+        test("Deve ocorrer um erro ao cadastrar novo comentário.", async () => {
+            const response = await request(app).post("/comments/16").send(  {
+                "usuario": "teste2",
+                "avaliacao": 4
+            });
+            expect(response.statusCode).toBe(400);
+        })
+    })
+})
