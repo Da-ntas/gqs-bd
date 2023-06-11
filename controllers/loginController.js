@@ -8,7 +8,7 @@ const loginControler = (req, res) => {
     const body = req.body;
 
     if(!body.email || !body.password){
-        return res.status(400).send({
+        return res.status(422).send({
             authed: false,
             error: 'O campo "email" e "password" são obrigatórios.'
         });

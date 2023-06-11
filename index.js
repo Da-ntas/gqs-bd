@@ -16,3 +16,5 @@ app.get('/comments/:id', getCommentById);
 app.post('/comments/:id', createComment);
 
 app.listen(3000);
+
+export default app
