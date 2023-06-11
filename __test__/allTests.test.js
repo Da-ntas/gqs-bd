@@ -85,12 +85,20 @@ describe("\n\nFuncionalidade 3: GET /livros/:id", () => {
 })
 
 
-describe("\n\nFuncionalidade 3: GET /comments/:id", () => {
+describe("\n\nFuncionalidade 3: GET /comments", () => {
     describe("\nTeste - Listar todos os comentários", () => {
         test("Deve retornar todos os comentários feitos no sistema separados por livros", async () => {
             const response = await request(app).get("/comments");
             expect(response.statusCode).toBe(200);
             expect(Object.keys(response.body).length).toBe(16);
+        })
+    })
+
+    describe("\nTeste - Listar todos os comentários de um livro em especifico", () => {
+        test("Deve retornar todos os comentários feitos referente ao livro ID informado", async () => {
+            const response = await request(app).get("/comments?id=5");
+            expect(response.statusCode).toBe(200);
+            expect(response.body.length).toBe(commentDatabase[5].length);
         })
     })
 })
