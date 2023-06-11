@@ -124,4 +124,22 @@ describe("\n\nFuncionalidade 3: POST /comments/:id", () => {
             expect(response.statusCode).toBe(400);
         })
     })
+
+    describe("\nTeste - Criar mais de um comentário", () => {
+        test("Deve cadastrar mais de um comentário com sucesso", async () => {
+            const response = await request(app).post("/comments/16").send([
+                {
+                  "usuario": "teste",
+                  "avaliacao": 2,
+                  "comentario": "teste"
+                },
+                {
+                  "usuario": "teste2",
+                  "avaliacao": 4,
+                  "comentario": "teste2"
+                }
+            ]);
+            expect(response.statusCode).toBe(200);
+        })
+    })
 })
