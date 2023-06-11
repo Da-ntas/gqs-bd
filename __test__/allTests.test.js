@@ -3,8 +3,8 @@ import app from "..";
 import { commentDatabase } from "../dataBase/comments";
 import { livrosDatabase } from "../dataBase/livros.js";
 
-describe("Funcionalidade 1: POST /login", () => {
-    describe("\nTeste - Login (Sucesso)", () => {
+describe("Chamada: POST /login", () => {
+    describe("\nFuncionalidade 1 - Login (Sucesso)", () => {
         test("Deve tentar realizar o login com sucesso", async () => {
             const response = await request(app).post("/login").send({
                 email: "beltrano@contoso.com",
@@ -14,7 +14,7 @@ describe("Funcionalidade 1: POST /login", () => {
         })
     })
 
-    describe("\nTeste - Login Erro (senha incorreta)", () => {
+    describe("\nFuncionalidade 1 - Login Erro (senha incorreta)", () => {
         test("Deve tentar realizar o login com erro", async () => {
             const response = await request(app).post("/login").send({
                 email: "beltrano@contoso.com",
@@ -24,7 +24,7 @@ describe("Funcionalidade 1: POST /login", () => {
         })
     })
 
-    describe("\nTeste - Login Erro (email incorreto)", () => {
+    describe("\nFuncionalidade 1 - Login Erro (email incorreto)", () => {
         test("Deve tentar realizar o login com erro", async () => {
             const response = await request(app).post("/login").send({
                 email: "naoexiste@naoexiste.com",
@@ -34,7 +34,7 @@ describe("Funcionalidade 1: POST /login", () => {
         })
     })
 
-    describe("\nTeste - Propriedades faltando", () => {
+    describe("\nFuncionalidade 1 - Propriedades faltando", () => {
         test("Deve tentar realizar o login com propriedades faltantes", async () => {
             const response = await request(app).post("/login").send({
                 email: "beltrano@contoso.com"
@@ -45,8 +45,8 @@ describe("Funcionalidade 1: POST /login", () => {
 })
 
 
-describe("\n\nFuncionalidade 2: GET /livros", () => {
-    describe("\nTeste - Listar todos os livros", () => {
+describe("\n\nChamada: GET /livros", () => {
+    describe("\nFuncionalidade 2 - Listar todos os livros", () => {
         test("Deve retornar todos os livros cadastrados no sistema", async () => {
             const response = await request(app).get("/livros");
             expect(response.statusCode).toBe(200);
@@ -54,7 +54,7 @@ describe("\n\nFuncionalidade 2: GET /livros", () => {
         })
     })
 
-    describe("\nTeste - Listar livros por filtros (Titulo, Autor ou assunto)", () => {
+    describe("\nFuncionalidade 2 - Listar livros por filtros (Titulo, Autor ou assunto)", () => {
         test("Deve retornar os livros do Autor George Orwell", async () => {
             const response = await request(app).get("/livros?autor=George Orwell");
             expect(response.statusCode).toBe(200);
@@ -63,7 +63,7 @@ describe("\n\nFuncionalidade 2: GET /livros", () => {
     })
 
 
-    describe("\nTeste - Listar livros por filtros (Titulo, Autor ou assunto) por propriedade inexistente", () => {
+    describe("\nFuncionalidade 2 - Listar livros por filtros (Titulo, Autor ou assunto) por propriedade inexistente", () => {
         test("Deve retornar os livros com a propriedade Teste = 100 paginas", async () => {
             const response = await request(app).get("/livros?Teste=100 paginas");
             expect(response.statusCode).toBe(400);
@@ -73,8 +73,8 @@ describe("\n\nFuncionalidade 2: GET /livros", () => {
 })
 
 
-describe("\n\nFuncionalidade 3: GET /livros/:id", () => {
-    describe("\nTeste - Listar livro por ID", () => {
+describe("\n\nChamada: GET /livros/:id", () => {
+    describe("\nFuncionalidade 3 - Listar livro por ID", () => {
         test("Deve retornar livro conforme ID passado", async () => {
             const response = await request(app).get("/livros/7");
             expect(response.statusCode).toBe(200);
@@ -85,8 +85,8 @@ describe("\n\nFuncionalidade 3: GET /livros/:id", () => {
 })
 
 
-describe("\n\nFuncionalidade 3: GET /comments", () => {
-    describe("\nTeste - Listar todos os comentários", () => {
+describe("\n\nChamada: GET /comments", () => {
+    describe("\nFuncionalidade 4 - Listar todos os comentários", () => {
         test("Deve retornar todos os comentários feitos no sistema separados por livros", async () => {
             const response = await request(app).get("/comments");
             expect(response.statusCode).toBe(200);
@@ -94,7 +94,7 @@ describe("\n\nFuncionalidade 3: GET /comments", () => {
         })
     })
 
-    describe("\nTeste - Listar todos os comentários de um livro em especifico", () => {
+    describe("\nFuncionalidade 4 - Listar todos os comentários de um livro em especifico", () => {
         test("Deve retornar todos os comentários feitos referente ao livro ID informado", async () => {
             const response = await request(app).get("/comments?id=5");
             expect(response.statusCode).toBe(200);
@@ -103,8 +103,8 @@ describe("\n\nFuncionalidade 3: GET /comments", () => {
     })
 })
 
-describe("\n\nFuncionalidade 3: POST /comments/:id", () => {
-    describe("\nTeste - Criar um novo comentário", () => {
+describe("\n\nChamada: POST /comments/:id", () => {
+    describe("\nFuncionalidade 5 - Criar um novo comentário", () => {
         test("Deve cadastrar um novo comentário com sucesso", async () => {
             const response = await request(app).post("/comments/16").send(  {
                 "usuario": "teste2",
@@ -115,7 +115,7 @@ describe("\n\nFuncionalidade 3: POST /comments/:id", () => {
         })
     })
 
-    describe("\nTeste - Criar novo comentário com propriedades obrigatórias ausentes", () => {
+    describe("\nFuncionalidade 5 - Criar novo comentário com propriedades obrigatórias ausentes", () => {
         test("Deve ocorrer um erro ao cadastrar novo comentário.", async () => {
             const response = await request(app).post("/comments/16").send(  {
                 "usuario": "teste2",
@@ -125,7 +125,7 @@ describe("\n\nFuncionalidade 3: POST /comments/:id", () => {
         })
     })
 
-    describe("\nTeste - Criar mais de um comentário", () => {
+    describe("\nFuncionalidade 16 - Criar mais de um comentário", () => {
         test("Deve cadastrar mais de um comentário com sucesso", async () => {
             const response = await request(app).post("/comments/16").send([
                 {
