@@ -125,7 +125,7 @@ describe("\n\nChamada: POST /comments/:id", () => {
         })
     })
 
-    describe("\nFuncionalidade 16 - Criar mais de um comentário", () => {
+    describe("\nFuncionalidade 6 - Criar mais de um comentário", () => {
         test("Deve cadastrar mais de um comentário com sucesso", async () => {
             const response = await request(app).post("/comments/16").send([
                 {
