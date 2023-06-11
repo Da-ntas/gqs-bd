@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "..";
+import { livrosDatabase } from "../dataBase/livros.js";
 
 describe("Funcionalidade 1: POST /login", () => {
     describe("\nTeste - Login (Sucesso)", () => {
@@ -38,6 +39,17 @@ describe("Funcionalidade 1: POST /login", () => {
                 email: "beltrano@contoso.com"
             });
             expect(response.statusCode).toBe(422);
+        })
+    })
+})
+
+
+describe("\n\nFuncionalidade 2: GET /livros", () => {
+    describe("\nTeste - Listar todos os livros", () => {
+        test("Deve retornar todos os livros cadastrados no sistema", async () => {
+            const response = await request(app).get("/livros");
+            expect(response.statusCode).toBe(200);
+            expect(response.body.length).toBe(livrosDatabase.length);
         })
     })
 })
