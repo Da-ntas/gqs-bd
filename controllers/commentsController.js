@@ -47,10 +47,10 @@ function getLastId() {
   
 
 export const getCommentById = (req, res) => {
-    const id = req.params?.id;
+    const id = req.query?.id;
 
     if(!id)
-        return res.status(400).send({error: "O campo ID é obrigatório"});
+        return res.status(200).json(commentDatabase);
 
     return res.status(200).json(commentDatabase[id] ?? []);
 }

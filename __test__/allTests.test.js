@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "..";
+import { commentDatabase } from "../dataBase/comments";
 import { livrosDatabase } from "../dataBase/livros.js";
 
 describe("Funcionalidade 1: POST /login", () => {
@@ -79,6 +80,17 @@ describe("\n\nFuncionalidade 3: GET /livros/:id", () => {
             expect(response.statusCode).toBe(200);
             expect(response.body.length).toBe(1);
             expect(response.body[0].id).toBe(7);
+        })
+    })
+})
+
+
+describe("\n\nFuncionalidade 3: GET /comments/:id", () => {
+    describe("\nTeste - Listar todos os comentários", () => {
+        test("Deve retornar todos os comentários feitos no sistema separados por livros", async () => {
+            const response = await request(app).get("/comments");
+            expect(response.statusCode).toBe(200);
+            expect(Object.keys(response.body).length).toBe(16);
         })
     })
 })

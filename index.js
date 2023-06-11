@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.post('/login', loginControler);
 app.get('/livros', getAllLivros);
 app.get('/livros/:id', getLivroById);
-app.get('/comments/:id', getCommentById);
+app.get('/comments', getCommentById);
 app.post('/comments/:id', createComment);
 
 app.listen(3000);
