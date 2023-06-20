@@ -6,7 +6,7 @@
 
 # Na primeira inicialização, utilize o comando: npm install
 
-#Após finalizar a instalação dos pacotes, utilize "npm start" para inicializar o projeto, ou, utilize "npm test" para rodar os testes.
+# Após finalizar a instalação dos pacotes, utilize "npm start" para inicializar o projeto, ou, utilize "npm test" para rodar os testes.
 
 
 # Integrantes:
