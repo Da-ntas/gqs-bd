@@ -6,8 +6,9 @@
 
 # Na primeira inicialização, utilize o comando: npm install
 
-# Após finalizar a instalação dos pacotes, utilize "npm start" para inicializar o projeto, ou, utilize "npm test" para rodar os testes.
+# Para rodar o projeto utilize: "npm start"
 
+# Para rodar os testes utilize: "npm test"
 
 # Integrantes:
 - Evelyn Tanzi Lehrer Pio RA: 125111367569 
